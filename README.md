@@ -1,2 +1,4 @@
-# AI 1: Lab Assignment 1
-## Agents and Search
+# Lab Assignment 1: Agents & Search
+
+## Prerequisites:
+* Python >=3.8
