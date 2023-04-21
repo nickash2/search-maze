@@ -15,6 +15,8 @@ def solve_maze_general(maze, algorithm):
         fr = Fringe("FIFO")
     elif algorithm == "DFS":
         fr = Fringe("STACK")
+    elif algorithm == "UCS":
+        fr = Fringe("PRIORITY")
     else:
         print("Algorithm not found/implemented, exit")
         return
