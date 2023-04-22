@@ -11,6 +11,7 @@ def heuristic_func(room, goal):
     dz = abs(roomCoords[2] - goal[2])
     return sqrt(dx*dx + dy*dy + dz*dz)
 
+
 def cost_func(state, room, goal):
     return state.get_cost() + heuristic_func(room, goal)
 
@@ -30,10 +31,11 @@ def solve_maze_general(maze, algorithm):
     elif algorithm == "UCS":
         fr = Fringe("PRIORITY")
     elif algorithm == "ASTAR":
-        fr = AStarFringe(lambda room: cost_func(state, room.get_room(), maze.get_goal()))
-
+        fr = AStarFringe(lambda room: cost_func(
+            state, room.get_room(), maze.get_goal()))
     elif algorithm == "GREEDY":
-        fr = GreedyFringe(lambda room: heuristic_func(room.get_room(), maze.get_goal()))
+        fr = GreedyFringe(lambda room: heuristic_func(
+            room.get_room(), maze.get_goal()))
     elif algorithm == "IDS":
         pass
     else:
