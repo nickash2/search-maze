@@ -87,7 +87,7 @@ class Fringe(object):
 
 
 class GreedyFringe(Fringe):
-    def __init__(self, heuristic_func, fringe_type='FIFO'):
+    def __init__(self, heuristic_func, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
         self.heuristic_func = heuristic_func
     
