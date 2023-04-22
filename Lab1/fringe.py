@@ -86,6 +86,17 @@ class Fringe(object):
         print("deletions: {0:>10d}".format(self.get_deletions()))
 
 
+"""class UCSFringe(Fringe):
+    def __init__(self):
+        super().__init__('PRIORITY')
+    
+    def push(self, item):
+        super().push((path_cost, item))"""
+
+
+    
+        
+
 class GreedyFringe(Fringe):
     def __init__(self, heuristic_func, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
