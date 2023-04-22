@@ -84,3 +84,29 @@ class Fringe(object):
         print("maximum size: {0:>7d}".format(self.__maxSize))
         print("insertions: {0:>9d}".format(self.get_insertions()))
         print("deletions: {0:>10d}".format(self.get_deletions()))
+
+
+class GreedyFringe(Fringe):
+    def __init__(self, heuristic_func, fringe_type='FIFO'):
+        super().__init__(fringe_type)
+        self.heuristic_func = heuristic_func
+    
+    def push(self, item):
+        """
+        puts the item in the fringe
+        :param item: item to put in the fringe
+        """
+        # If the fringe is full, print an error and exit
+        if self.__fringe.full():
+            print("Error: trying to apply push on an fringe that already contains MAX ("
+                  + str(self.__MAX_FRINGE_SIZE) + ") elements")
+            self.print_stats()
+            sys.exit(1)
+        heuristic = self.heuristic_func(item)
+        self.__fringe.put(heuristic, block=False)
+        if self.__fringe.qsize() > self.__maxSize:
+            self.__maxSize = self.__fringe.qsize()
+        self.__insertions += 1
+
+        
+        
