@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from fringe import Fringe, GreedyFringe
+from fringe import Fringe, GreedyFringe, AStarFringe
 from state import State
 from math import sqrt
 
@@ -10,6 +10,9 @@ def heuristic_func(room, goal):
     dy = abs(roomCoords[1] - goal[1])
     dz = abs(roomCoords[2] - goal[2])
     return sqrt(dx*dx + dy*dy + dz*dz)
+
+def cost_func(state, room, goal):
+    return state.get_cost() + heuristic_func(room, goal)
 
 
 def solve_maze_general(maze, algorithm):
@@ -27,8 +30,7 @@ def solve_maze_general(maze, algorithm):
     elif algorithm == "UCS":
         fr = Fringe("PRIORITY")
     elif algorithm == "ASTAR":
-        fr = GreedyFringe(lambda room: room.get_cost() +
-                          heuristic_func(room.get_room(), maze.get_goal()))
+        fr = AStarFringe(lambda room: cost_func(state, room.get_room(), maze.get_goal()))
     elif algorithm == "GREEDY":
         fr = GreedyFringe(lambda room: heuristic_func(
             room.get_room(), maze.get_goal()))

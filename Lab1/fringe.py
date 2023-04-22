@@ -101,4 +101,14 @@ class GreedyFringe(Fringe):
         self.heuristics.put((heuristic, item), block=False)
         super().push(self.heuristics.get()[1])
         
-    
+class AStarFringe(Fringe):
+    def __init__(self, cost_func, fringe_type='PRIORITY'):
+        super().__init__(fringe_type)
+        self.cost_func = cost_func
+        self.costs = queue.PriorityQueue(self._Fringe__MAX_FRINGE_SIZE)
+        
+    def push(self, item):
+        
+        currentCost = self.cost_func(item)   
+        self.costs.put((currentCost, item), block=False)
+        super().push(self.costs.get()[1])
