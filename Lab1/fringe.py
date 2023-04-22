@@ -106,8 +106,3 @@ class GreedyFringe(Fringe):
         super().push(item)
         heuristic = self.heuristic_func(item)
         self.heuristics.put(heuristic, block=False)
-
-
-
-        
-        
