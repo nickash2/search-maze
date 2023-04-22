@@ -21,4 +21,5 @@ autopep8 --in-place <filename>
 
 * For UCS, we need to order the priorty queue on the cost, as currently we are ordering it on the room number. 
     * That can be done by creating a class, and pushing the cost to the fringe rather than the number
+* For A* and Greedy Search, a tuple is being added to the fringe, and since the priority queue is ordered based on the first element in the tuple in this case, it works as expected.
 
