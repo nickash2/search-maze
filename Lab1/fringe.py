@@ -98,6 +98,7 @@ class GreedyFringe(Fringe):
         :param item: item to put in the fringe
         """
         heuristic = self.heuristic_func(item)
-        self.heuristics.put((item, heuristic), block=False)
-        super().push(self.heuristics.get()[0])
+        self.heuristics.put((heuristic, item), block=False)
+        super().push(self.heuristics.get()[1])
+        
     
