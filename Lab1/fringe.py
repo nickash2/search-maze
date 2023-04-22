@@ -90,25 +90,39 @@ class GreedyFringe(Fringe):
     def __init__(self, heuristic_func, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
         self.heuristic_func = heuristic_func
-        self.heuristics = queue.PriorityQueue(self._Fringe__MAX_FRINGE_SIZE)
+        
 
     def push(self, item):
-        """
-        puts the item in the fringe
-        :param item: item to put in the fringe
-        """
+
         heuristic = self.heuristic_func(item)
-        self.heuristics.put((heuristic, item), block=False)
-        super().push(self.heuristics.get()[1])
+        super().push((heuristic, item))
+        
+    def pop(self):
+        # Pop the item with the smallest heuristic value
+        item = super().pop()
+        if isinstance(item, tuple):
+            return item[1] # Return the item if it's not a tuple
+        else:
+            return item
+        
         
 class AStarFringe(Fringe):
     def __init__(self, cost_func, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
         self.cost_func = cost_func
-        self.costs = queue.PriorityQueue(self._Fringe__MAX_FRINGE_SIZE)
-        
+
     def push(self, item):
+        current_cost = self.cost_func(item)
         
-        currentCost = self.cost_func(item)   
-        self.costs.put((currentCost, item), block=False)
-        super().push(self.costs.get()[1])
+        super().push((current_cost, item))
+    
+    def pop(self):
+        # Pop the item with the smallest heuristic value
+        item = super().pop()
+        if isinstance(item, tuple):
+            return item[1] # Return the item if it's not a tuple
+        else:
+            return item
+        
+
+
