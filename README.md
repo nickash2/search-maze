@@ -4,10 +4,11 @@
 * Python >=3.8
 
 ## TODO List:
-
 - [x] Implement Greedy Search
 - [x] Implement A*
 - [ ] Implement UCS
+- [ ] Implement Error Catching in A* & Greedy Search (insertions, deletions, fringe being full)
+
 
 ### Notes
 * For UCS, we need to order the priorty queue on the cost, as currently we are ordering it on the room number. 
