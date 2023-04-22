@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 from fringe import Fringe, GreedyFringe
 from state import State
-import math
+from math import sqrt
 
 def heuristic_func(room, goal):
     roomCoords = room.get_coords()
     dx = abs(roomCoords[0] - goal[0])
     dy = abs(roomCoords[1] - goal[1])
     dz = abs(roomCoords[2] - goal[2])
-    return math.sqrt(dx*dx + dy*dy + dz*dz)
+    return sqrt(dx*dx + dy*dy + dz*dz)
 
 def solve_maze_general(maze, algorithm):
     """
