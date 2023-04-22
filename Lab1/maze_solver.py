@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
-from fringe import Fringe
+from fringe import Fringe, GreedyFringe
 from state import State
+import math
 
+def heuristic_func(room, goal):
+    roomCoords = room.get_coords()
+    dx = abs(roomCoords[0] - goal[0])
+    dy = abs(roomCoords[1] - goal[1])
+    dz = abs(roomCoords[2] - goal[2])
+    return math.sqrt(dx*dx + dy*dy + dz*dz)
 
 def solve_maze_general(maze, algorithm):
     """
@@ -20,7 +27,7 @@ def solve_maze_general(maze, algorithm):
     elif algorithm == "ASTAR":
         pass
     elif algorithm == "GREEDY":
-        pass
+        fr = GreedyFringe(lambda s: heuristic_func(s.get_room(), maze.get_goal()))    
     elif algorithm == "IDS":
         pass
         
@@ -41,6 +48,8 @@ def solve_maze_general(maze, algorithm):
         state = fr.pop()
         
         room = state.get_room()
+        
+        
 
         if room.is_goal():
             # if room is the goal, print that with the statistics and the path and return
