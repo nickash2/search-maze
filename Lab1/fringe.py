@@ -90,23 +90,24 @@ class GreedyFringe(Fringe):
     def __init__(self, heuristic_func, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
         self.heuristic_func = heuristic_func
-    
+        self.heuristics = queue.PriorityQueue(self._Fringe__MAX_FRINGE_SIZE)
+
     def push(self, item):
         """
         puts the item in the fringe
         :param item: item to put in the fringe
         """
         # If the fringe is full, print an error and exit
-        if self.__fringe.full():
+        if self._Fringe__fringe.full():
             print("Error: trying to apply push on an fringe that already contains MAX ("
-                  + str(self.__MAX_FRINGE_SIZE) + ") elements")
+                  + str(self._Fringe__MAX_FRINGE_SIZE) + ") elements")
             self.print_stats()
             sys.exit(1)
+        super().push(item)
         heuristic = self.heuristic_func(item)
-        self.__fringe.put(heuristic, block=False)
-        if self.__fringe.qsize() > self.__maxSize:
-            self.__maxSize = self.__fringe.qsize()
-        self.__insertions += 1
+        self.heuristics.put(heuristic, block=False)
+
+
 
         
         
