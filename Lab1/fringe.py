@@ -91,9 +91,10 @@ class GreedyFringe(Fringe):
         super().__init__(fringe_type)
         self.heuristic_func = heuristic_func
         
-
+    def push_fringe(self, item):
+        super().push(item)
+        
     def push(self, item):
-
         heuristic = self.heuristic_func(item)
         super().push((heuristic, item))
         
@@ -106,23 +107,15 @@ class GreedyFringe(Fringe):
             return item
         
         
-class AStarFringe(Fringe):
+class AStarFringe(GreedyFringe):
     def __init__(self, cost_func, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
         self.cost_func = cost_func
 
     def push(self, item):
         current_cost = self.cost_func(item)
-        
-        super().push((current_cost, item))
+        self.push_fringe((current_cost, item))
+      
     
-    def pop(self):
-        # Pop the item with the smallest heuristic value
-        item = super().pop()
-        if isinstance(item, tuple):
-            return item[1] # Return the item if it's not a tuple
-        else:
-            return item
-        
 
 
