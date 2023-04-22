@@ -10,6 +10,7 @@
 - [x] Implement A*
 - [ ] Implement UCS
 - [ ] Implement Error Catching in A* & Greedy Search (insertions, deletions, fringe being full)
+- [ ] Implement IDS
 
 
 ### Notes
