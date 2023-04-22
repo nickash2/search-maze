@@ -90,7 +90,7 @@ class GreedyFringe(Fringe):
     def __init__(self, heuristic_func, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
         self.heuristic_func = heuristic_func
-        self.heuristics = super().create_fringe(fringe_type)
+        self.heuristics = queue.PriorityQueue(self._Fringe__MAX_FRINGE_SIZE)
 
     def push(self, item):
         """
