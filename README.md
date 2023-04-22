@@ -13,7 +13,7 @@
 
 
 ### Notes
-* Before committing anything, ensure that it is autopep8'd by using the command:
+* Before committing anything, ensure that it is autopep8'd by using the command:  
 `autopep8 --in-place <filename>` 
 
 * For UCS, we need to order the priorty queue on the cost, as currently we are ordering it on the room number. 
