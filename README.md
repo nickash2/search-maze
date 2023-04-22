@@ -1,7 +1,8 @@
 # Lab Assignment 1: Agents & Search
 
 ## Prerequisites:
-* Python >=3.8
+* Python >= 3.8
+* Pylama ([Linting](https://code.visualstudio.com/docs/python/linting#:~:text=Linting%20highlights%20syntactical%20and%20stylistic,that%20can%20lead%20to%20errors.) Purposes)
 
 ## TODO List:
 - [x] Implement Greedy Search
