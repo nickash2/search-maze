@@ -86,18 +86,16 @@ class Fringe(object):
         print("deletions: {0:>10d}".format(self.get_deletions()))
 
 
-class GreedyFringe(Fringe):
-    def __init__(self, heuristic_func, fringe_type='PRIORITY'):
+class UCSFringe(Fringe):
+    def __init__(self, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
-        self.heuristic_func = heuristic_func
-
+        
     def push_fringe(self, item):
         super().push(item)
 
     def push(self, item):
-        heuristic = self.heuristic_func(item)
-        super().push((heuristic, item))
-
+        super().push((item.get_cost(), item))
+        
     def pop(self):
         # Pop the item with the smallest heuristic value
         item = super().pop()
@@ -107,19 +105,22 @@ class GreedyFringe(Fringe):
             return item
 
 
-class UCSFringe(GreedyFringe):
-    def __init__(self, fringe_type='PRIORITY'):
+class GreedyFringe(UCSFringe):
+    def __init__(self, heuristic_func, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
+        self.heuristic_func = heuristic_func
+
 
     def push(self, item):
-        super().push_fringe((item.get_cost(), item))
+        heuristic = self.heuristic_func(item)
+        super().push_fringe((heuristic, item))
 
 
-class AStarFringe(GreedyFringe):
+class AStarFringe(UCSFringe):
     def __init__(self, cost_func, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
         self.cost_func = cost_func
 
     def push(self, item):
         current_cost = self.cost_func(item)
-        self.push_fringe((current_cost, item))
+        super().push_fringe((current_cost, item))
