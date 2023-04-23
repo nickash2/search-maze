@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from fringe import Fringe, GreedyFringe, AStarFringe
+from fringe import Fringe, GreedyFringe, AStarFringe, UCSFringe
 from state import State
 from math import sqrt
 
@@ -29,13 +29,11 @@ def solve_maze_general(maze, algorithm):
     elif algorithm == "DFS":
         fr = Fringe("STACK")
     elif algorithm == "UCS":
-        fr = Fringe("PRIORITY")
+        fr = UCSFringe(lambda state: state.get_cost())
     elif algorithm == "ASTAR":
-        fr = AStarFringe(lambda room: cost_func(
-            state, room.get_room(), maze.get_goal()))
+        fr = AStarFringe(lambda room: cost_func(state, room.get_room(), maze.get_goal()))
     elif algorithm == "GREEDY":
-        fr = GreedyFringe(lambda room: heuristic_func(
-            room.get_room(), maze.get_goal()))
+        fr = GreedyFringe(lambda room: heuristic_func(room.get_room(), maze.get_goal()))
     elif algorithm == "IDS":
         pass
     else:
