@@ -1,14 +1,6 @@
 #!/usr/bin/env python3
 from fringe import Fringe, GreedyFringe, AStarFringe, UCSFringe
 from state import State
-from math import sqrt
-
-
-def heuristic_func(room):
-    return room.get_heuristic_value()
-
-def cost_func(state, room):
-    return state.get_cost() + heuristic_func(room)
 
 
 def solve_maze_general(maze, algorithm):
