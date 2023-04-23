@@ -29,7 +29,7 @@ def solve_maze_general(maze, algorithm):
     elif algorithm == "DFS":
         fr = Fringe("STACK")
     elif algorithm == "UCS":
-        fr = UCSFringe(lambda state: state.get_cost())
+        fr = UCSFringe("PRIORITY")
     elif algorithm == "ASTAR":
         fr = AStarFringe(lambda room: cost_func(state, room.get_room(), maze.get_goal()))
     elif algorithm == "GREEDY":

@@ -108,13 +108,11 @@ class GreedyFringe(Fringe):
 
 
 class UCSFringe(GreedyFringe):
-    def __init__(self, path_cost, fringe_type='PRIORITY'):
+    def __init__(self, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
-        self.path_cost = path_cost
 
     def push(self, item):
-        cost = self.path_cost(item)
-        super().push_fringe((cost, item))
+        super().push_fringe((item.get_cost(), item))
 
 
 class AStarFringe(GreedyFringe):
