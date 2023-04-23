@@ -1,5 +1,5 @@
 # Lab Assignment 1: Agents & Search
-The following is an implementation of various search algorithms, for searching in a maze, with the use of OOP principles.
+The following is an implementation of various search algorithms, for searching in a 3D maze, implemented with the use of OOP principles.
 ## Prerequisites:
 * Python >= 3.8
 * Pylama ([Linting](https://code.visualstudio.com/docs/python/linting#:~:text=Linting%20highlights%20syntactical%20and%20stylistic,that%20can%20lead%20to%20errors.) Purposes)
