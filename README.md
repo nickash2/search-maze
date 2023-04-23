@@ -6,10 +6,9 @@
 * [autopep8](https://pypi.org/project/autopep8/)
 
 ## TODO List:
-- [x] Implement Greedy Search
-- [x] Implement A*
-- [ ] Implement UCS
-- [ ] Implement Error Catching in A* & Greedy Search (insertions, deletions, fringe being full)
+- [x] ~~Implement Greedy Search~~
+- [x] ~~Implement A*~~
+- [x] ~~Implement UCS~~
 - [ ] Implement IDS
 
 
