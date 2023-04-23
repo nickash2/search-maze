@@ -6,8 +6,8 @@
 * [autopep8](https://pypi.org/project/autopep8/)
 
 ## TODO List:
-- [x] ~~Fix BFS~~
 - [x] ~~Fix DFS~~
+- [x] ~~Fix BFS~~
 - [x] ~~Implement UCS~~
 - [x] ~~Implement Greedy Search~~
 - [x] ~~Implement A*~~
