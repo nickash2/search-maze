@@ -86,13 +86,6 @@ class Fringe(object):
         print("deletions: {0:>10d}".format(self.get_deletions()))
 
 
-"""class UCSFringe(Fringe):
-    def __init__(self):
-        super().__init__('PRIORITY')
-    
-    def push(self, item):
-        super().push((path_cost, item))"""
-
 
 class GreedyFringe(Fringe):
     def __init__(self, heuristic_func, fringe_type='PRIORITY'):
@@ -113,6 +106,16 @@ class GreedyFringe(Fringe):
             return item[1]  # Return the item if it's not a tuple
         else:
             return item
+
+
+class UCSFringe(GreedyFringe):
+    def __init__(self, path_cost, fringe_type='PRIORITY'):
+        super().__init__(fringe_type)
+        self.path_cost = path_cost
+    
+    def push(self, item):
+        cost = self.path_cost(item)
+        super().push_fringe((cost, item))
 
 
 class AStarFringe(GreedyFringe):
