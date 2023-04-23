@@ -89,13 +89,13 @@ class Fringe(object):
 class UCSFringe(Fringe):
     def __init__(self, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
-        
+
     def push_fringe(self, item):
         super().push(item)
 
     def push(self, item):
         super().push((item.get_cost(), item))
-        
+
     def pop(self):
         # Pop the item with the smallest heuristic value
         item = super().pop()
@@ -109,7 +109,6 @@ class GreedyFringe(UCSFringe):
     def __init__(self, heuristic_func, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
         self.heuristic_func = heuristic_func
-
 
     def push(self, item):
         heuristic = self.heuristic_func(item)
