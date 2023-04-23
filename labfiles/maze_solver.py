@@ -26,9 +26,9 @@ def solve_maze_general(maze, algorithm):
     elif algorithm == "UCS":
         fr = UCSFringe("PRIORITY")
     elif algorithm == "ASTAR":
-        fr = AStarFringe(lambda state: cost_func(state, state.get_room()))
+        fr = AStarFringe("PRIORITY")
     elif algorithm == "GREEDY":
-        fr = GreedyFringe(lambda state: heuristic_func(state.get_room()))
+        fr = GreedyFringe("PRIORITY")
     elif algorithm == "IDS":
         pass
     else:

@@ -106,21 +106,22 @@ class UCSFringe(Fringe):
 
 
 class GreedyFringe(UCSFringe):
-    def __init__(self,heuristic_func,fringe_type='PRIORITY'):
+    def __init__(self,fringe_type='PRIORITY'):
         super().__init__(fringe_type)
-        self.heuristic_func = heuristic_func
         
-
     def push(self, item):
-        heuristic = self.heuristic_func(item)
-        super().push_fringe((heuristic, item))
+        currentRoom = item.get_room()
+        otherheuristic = currentRoom.get_heuristic_value()
+        super().push_fringe((otherheuristic, item))
 
 
 class AStarFringe(UCSFringe):
-    def __init__(self, cost_func, fringe_type='PRIORITY'):
+    def __init__(self, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
-        self.cost_func = cost_func
 
     def push(self, item):
-        current_cost = self.cost_func(item)
+        currentRoom = item.get_room()
+        roomCost = item.get_cost()
+        heuristic = currentRoom.get_heuristic_value()
+        current_cost = roomCost + heuristic
         super().push_fringe((current_cost, item))
