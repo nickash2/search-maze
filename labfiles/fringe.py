@@ -106,9 +106,10 @@ class UCSFringe(Fringe):
 
 
 class GreedyFringe(UCSFringe):
-    def __init__(self, heuristic_func, fringe_type='PRIORITY'):
+    def __init__(self,heuristic_func,fringe_type='PRIORITY'):
         super().__init__(fringe_type)
         self.heuristic_func = heuristic_func
+        
 
     def push(self, item):
         heuristic = self.heuristic_func(item)
