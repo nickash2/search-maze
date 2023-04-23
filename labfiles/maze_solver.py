@@ -9,7 +9,7 @@ def heuristic_func(room, goal):
     dx = abs(roomCoords[0] - goal[0])
     dy = abs(roomCoords[1] - goal[1])
     dz = abs(roomCoords[2] - goal[2])
-    return sqrt(dx*dx + dy*dy + dz*dz)
+    return sqrt(dx**2 + dy**2 + dz**2)
 
 
 def cost_func(state, room, goal):
