@@ -89,16 +89,19 @@ class Fringe(object):
 class UCSFringe(Fringe):
     def __init__(self, fringe_type='PRIORITY'):
         super().__init__(fringe_type)
-
-    def push_fringe(self, item):
-        super().push(item)
-
-    def push(self, item):
+        
+    def isFringeFull(self):
         if self._Fringe__fringe.full():
             print("Error: trying to apply push on an fringe that already contains MAX ("
                     + str(self.__MAX_FRINGE_SIZE) + ") elements")
             self.print_stats()
             sys.exit(1)
+
+    def push_fringe(self, item):
+        super().push(item)
+
+    def push(self, item):
+        self.isFringeFull()
         super().push((item.get_cost(), item))
 
     def pop(self):
@@ -115,13 +118,7 @@ class GreedyFringe(UCSFringe):
         super().__init__(fringe_type)
         
     def push(self, item):
-        
-        if self._Fringe__fringe.full():
-            print("Error: trying to apply push on an fringe that already contains MAX ("
-                    + str(self.__MAX_FRINGE_SIZE) + ") elements")
-            self.print_stats()
-            sys.exit(1)
-            
+        self.isFringeFull()
         currentRoom = item.get_room()
         otherheuristic = currentRoom.get_heuristic_value()
         super().push_fringe((otherheuristic, item))
@@ -132,17 +129,10 @@ class AStarFringe(UCSFringe):
         super().__init__(fringe_type)
 
     def push(self, item):
-        
-        if self._Fringe__fringe.full():
-            print("Error: trying to apply push on an fringe that already contains MAX ("
-                    + str(self.__MAX_FRINGE_SIZE) + ") elements")
-            self.print_stats()
-            sys.exit(1)
-            
+        self.isFringeFull()  
         currentRoom = item.get_room()
         roomCost = item.get_cost()
         heuristic = currentRoom.get_heuristic_value()
-        
         if (heuristic is not None):
             current_cost = roomCost + heuristic
             super().push_fringe((current_cost, item))
