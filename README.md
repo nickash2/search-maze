@@ -11,7 +11,7 @@ The following is an implementation of various search algorithms, for searching i
 - [x] ~~Implement UCS~~
 - [x] ~~Implement Greedy Search~~
 - [x] ~~Implement A*~~
-- [ ] Implement IDS
+- [x] ~~Implement IDS~~
 
 
 ## Iterative Deepening Search(IDS)
