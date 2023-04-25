@@ -53,22 +53,22 @@ def solveIDS(maze, fr):
     fr.push(state)
     visited = set()
     depth_limit = 0
-    
+
     while True:
         if not fr.is_empty():
-            if(DFS(state, visited, fr, depth_limit, maze)):
-            # goal found
+            if (DLS(state, visited, fr, depth_limit, maze)):
+                # goal found
                 return True
             depth_limit += 1
-    
-    
-def DFS(state, visited, fr, depth_limit, maze):
-    
+
+# Implement a Depth-Limited  Search Algorithm
+def DLS(state, visited, fr, depth_limit, maze):
+
     # get item from fringe and get the room from that state
     state = fr.pop()
     room = state.get_room()
 
-    if room.is_goal(): 
+    if room.is_goal():
         print("solved")
         fr.print_stats()
         state.print_path()
@@ -76,7 +76,7 @@ def DFS(state, visited, fr, depth_limit, maze):
         print()
         maze.print_maze_with_path(state)
         return True
-    
+
     if state.get_depth() > depth_limit:
         print("depth limit reached")
         return False
@@ -91,14 +91,15 @@ def DFS(state, visited, fr, depth_limit, maze):
             if new_room not in visited:
                 # create the new state and push to the stack if the new room has not been visited before
                 # Create new state with new room and old room
-                new_state = State(new_room, state, cost, depth = state.get_depth() + 1)
+                new_state = State(new_room, state, cost,
+                                  depth=state.get_depth() + 1)
                 # push the new state
                 fr.push(new_state)
 
     # goal is not found, so maze is not solved
     return False
-    
-    
+
+
 def solve_maze_general(maze, algorithm):
     """
     Finds a path in a given maze with the given algorithm
@@ -125,13 +126,7 @@ def solve_maze_general(maze, algorithm):
     else:
         print("Algorithm not found/implemented, exit")
         return
-    
-    if (solve_maze(maze,fr)):
+
+    if (solve_maze(maze, fr)):
         return True
     return False
-
-
-
-
-
-
