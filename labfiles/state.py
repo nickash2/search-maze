@@ -4,11 +4,19 @@ import maze
 
 class State:
 	"""Class to save the possible states in"""
-	def __init__(self, room, parent, cost=0, priority=0):
+	def __init__(self, room, parent, cost=0, priority=0, depth=0):
 		self.parent = parent
 		self.room = room
 		self.cost = cost
 		self.priority = priority
+		self.depth = depth
+  
+	def get_depth(self):
+		return self.depth
+
+	def set_depth(self, depth):
+		self.depth = depth
+
 
 	def get_room(self):
 		"""
