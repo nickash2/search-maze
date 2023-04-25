@@ -130,3 +130,5 @@ def solve_maze_general(maze, algorithm):
     if (solve_maze(maze, fr)):
         return True
     return False
+
+
