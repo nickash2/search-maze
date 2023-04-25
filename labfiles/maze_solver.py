@@ -3,30 +3,8 @@ from fringe import Fringe, GreedyFringe, AStarFringe, UCSFringe
 from state import State
 
 
-def solve_maze_general(maze, algorithm):
-    """
-    Finds a path in a given maze with the given algorithm
-    :param maze: The maze to solve
-    :param algorithm: The desired algorithm to use
-    :return: True if solution is found, False otherwise
-    """
-    # select the right fringe for each algorithm
-    if algorithm == "BFS":
-        fr = Fringe("FIFO")
-    elif algorithm == "DFS":
-        fr = Fringe("STACK")
-    elif algorithm == "UCS":
-        fr = UCSFringe("PRIORITY")
-    elif algorithm == "ASTAR":
-        fr = AStarFringe("PRIORITY")
-    elif algorithm == "GREEDY":
-        fr = GreedyFringe("PRIORITY")
-    elif algorithm == "IDS":
-        pass
-    else:
-        print("Algorithm not found/implemented, exit")
-        return
-
+def solve_maze(maze, fr):
+    
     # get the start room, create state with start room and None as parent and put it in fringe
     room = maze.get_room(*maze.get_start())
     state = State(room, None)
@@ -68,3 +46,40 @@ def solve_maze_general(maze, algorithm):
     print("not solved")
     fr.print_stats()        # print the statistics of the fringe
     return False
+
+
+def solve_maze_general(maze, algorithm):
+    """
+    Finds a path in a given maze with the given algorithm
+    :param maze: The maze to solve
+    :param algorithm: The desired algorithm to use
+    :return: True if solution is found, False otherwise
+    """
+    # select the right fringe for each algorithm
+    if algorithm == "BFS":
+        fr = Fringe("FIFO")
+    elif algorithm == "DFS":
+        fr = Fringe("STACK")
+    elif algorithm == "UCS":
+        fr = UCSFringe("PRIORITY")
+    elif algorithm == "ASTAR":
+        fr = AStarFringe("PRIORITY")
+    elif algorithm == "GREEDY":
+        fr = GreedyFringe("PRIORITY")
+    elif algorithm == "IDS":
+        fr = Fringe("STACK")
+        if (IDSAlgorithm(maze, fr)):
+            return True
+        return False
+    else:
+        print("Algorithm not found/implemented, exit")
+        return
+    
+    if (solve_maze(maze,fr)):
+        return True
+    return False
+    
+
+def IDSAlgorithm(maze, fr):
+    pass
+
