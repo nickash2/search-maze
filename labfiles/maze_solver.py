@@ -48,53 +48,56 @@ def solve_maze(maze, fr):
 
 
 def solveIDS(maze, fr):
+    depth_limit = 0
+    while True:
+        if (DLS(fr, depth_limit, maze)):
+            # goal found
+            return True
+        depth_limit += 1
+
+# Implement a Depth-Limited  Search Algorithm
+def DLS(fr, depth_limit, maze):
+    
+    visited = set()
     room = maze.get_room(*maze.get_start())
     state = State(room, None, depth=0)
     fr.push(state)
-    visited = set()
-    depth_limit = 0
+    
+    while not fr.is_empty():
+        # get item from fringe and get the room from that state
+        state = fr.pop()
+        print(state.get_depth())
+        room = state.get_room()
+        print(room.get_coords())
 
-    while True:
-        if not fr.is_empty():
-            if (DLS(state, visited, fr, depth_limit, maze)):
-                # goal found
-                return True
-            depth_limit += 1
+        if room.is_goal():
+            print("solved")
+            fr.print_stats()
+            state.print_path()
+            state.print_actions()
+            print()
+            maze.print_maze_with_path(state)
+            return True
 
-# Implement a Depth-Limited  Search Algorithm
-def DLS(state, visited, fr, depth_limit, maze):
+        if state.get_depth() > depth_limit:
+            print("depth limit reached")
+            continue
 
-    # get item from fringe and get the room from that state
-    state = fr.pop()
-    room = state.get_room()
-
-    if room.is_goal():
-        print("solved")
-        fr.print_stats()
-        state.print_path()
-        state.print_actions()
-        print()
-        maze.print_maze_with_path(state)
-        return True
-
-    if state.get_depth() > depth_limit:
-        print("depth limit reached")
-        return False
-
-    if room not in visited:
-        # if room was not visited before, add it to the set
-        visited.add(room)
-        for d in room.get_connections():    # for move in [N,S,E,W]
-            # loop through every possible move
-            # Get new room after move and cost to get there
-            new_room, cost = room.make_move(d, state.get_cost())
-            if new_room not in visited:
-                # create the new state and push to the stack if the new room has not been visited before
-                # Create new state with new room and old room
-                new_state = State(new_room, state, cost,
-                                  depth=state.get_depth() + 1)
-                # push the new state
-                fr.push(new_state)
+        if room not in visited:
+            # if room was not visited before, add it to the set
+            visited.add(room)
+            for d in room.get_connections():    # for move in [N,S,E,W]
+                # loop through every possible move
+                # Get new room after move and cost to get there
+                new_room, cost = room.make_move(d, state.get_cost())
+                if new_room not in visited:
+                    # create the new state and push to the stack if the new room has not been visited before
+                    # Create new state with new room and old room
+                    print("In here")
+                    new_state = State(new_room, state, cost,
+                                    depth=state.get_depth() + 1)
+                    # push the new state
+                    fr.push(new_state)
 
     # goal is not found, so maze is not solved
     return False
