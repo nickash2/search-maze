@@ -56,13 +56,15 @@ def solveIDS(maze, fr):
         depth_limit += 1
 
 # Implement a Depth-Limited  Search Algorithm
+
+
 def DLS(fr, depth_limit, maze):
-    
+
     visited = set()
     room = maze.get_room(*maze.get_start())
     state = State(room, None, depth=0)
     fr.push(state)
-    
+
     while not fr.is_empty():
         # get item from fringe and get the room from that state
         state = fr.pop()
@@ -95,7 +97,7 @@ def DLS(fr, depth_limit, maze):
                     # Create new state with new room and old room
                     print("In here")
                     new_state = State(new_room, state, cost,
-                                    depth=state.get_depth() + 1)
+                                      depth=state.get_depth() + 1)
                     # push the new state
                     fr.push(new_state)
 
@@ -133,5 +135,3 @@ def solve_maze_general(maze, algorithm):
     if (solve_maze(maze, fr)):
         return True
     return False
-
-
