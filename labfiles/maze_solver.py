@@ -55,11 +55,9 @@ def solveIDS(maze, fr):
             return True
         depth_limit += 1
 
-# Implement a Depth-Limited  Search Algorithm
-
 
 def DLS(fr, depth_limit, maze):
-
+    # Implement a Depth-Limited  Search Algorithm
     visited = set()
     room = maze.get_room(*maze.get_start())
     state = State(room, None, depth=0)
